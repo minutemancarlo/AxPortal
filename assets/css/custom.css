@@ -1,0 +1,27 @@
+.template-color {
+  background-color: #A62626;
+  color: white;
+}
+.pozlogo{
+  height: 100px;
+}
+
+.brand{
+  height: 100px;
+}
+
+.circle-img {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 150px;
+    width: 150px;
+  }
+
+  .circle-img-navbar {
+      border-radius: 50%;
+      overflow: hidden;
+      height: 50px;
+      width: 50px;
+    }
+
+  

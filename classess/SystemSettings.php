@@ -181,7 +181,7 @@ class SystemSettings {
         $currentMonth = date('F');
         $currentDate = date('m-d-Y');
         // Get the project root folder
-        $rootFolder = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'LMS';
+        $rootFolder = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'AxPortal';
 
         // Create the log folder path based on the current year, month, and date
         $logFolderPath =   $rootFolder . DIRECTORY_SEPARATOR . "Logs" . DIRECTORY_SEPARATOR . $currentYear . DIRECTORY_SEPARATOR . $currentMonth;

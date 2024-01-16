@@ -1,0 +1,10 @@
+01:27 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', 'EE07AE7WJC')
+01:27 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', '0EBF4KB1PN')
+01:27 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', 'A3842SQZWI')
+01:27 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', 'C9A9EHNT0I')
+01:27 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', 'F3A2DJ8N4Z')
+01:27 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', '1E068DUYJC')
+01:29 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', '8433EXHLF5')
+01:29 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', '747CBY81FC')
+08:30 AM [LoginController] - User carloboado18@gmail.com login successful.
+08:56 AM [LoginController] - User cboado@teligent.ph login successful.

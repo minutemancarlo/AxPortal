@@ -1,0 +1,7 @@
+12:08 AM [LoginController] - User carloboado18@gmail.com login successful.
+04:28 PM [LoginController] - User carloboado18@gmail.com login successful.
+04:41 PM [LoginController] - User carloboado18@gmail.com login successful.
+04:51 PM [LoginController] - User carloboado18@gmail.com login successful.
+10:24 PM [DatabaseHandler] - Query execution failed: SELECT * FROM user
+10:24 PM [DatabaseHandler] - Query execution failed: SELECT * FROM user
+11:59 PM [EmailApi] - Email Verification sent to s4dev.main@gmail.com

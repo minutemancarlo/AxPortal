@@ -1,0 +1,7 @@
+09:03 PM [EmailApi] - Email Verification sent to developer.sentinelsystems@gmail.com
+09:05 PM [EmailApi] - Email Verification sent to developer.sentinelsystems@gmail.com
+09:07 PM [EmailApi] - Email Verification sent to developer.sentinelsystems@gmail.com
+09:09 PM [EmailApi] - Email Verification sent to s4dev.main@gmail.com
+09:14 PM [EmailApi] - Email Verification sent to joshuaborbon0828@gmail.com
+09:37 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com
+10:01 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com

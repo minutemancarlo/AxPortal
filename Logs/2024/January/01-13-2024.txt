@@ -1,0 +1,3 @@
+04:19 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description) VALUES ('1', '1', '', '1', '', 'asd')
+03:02 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:21 PM [LoginController] - User carloboado18@gmail.com login successful.

@@ -1,0 +1,7 @@
+12:15 AM [DatabaseHandler] - Query execution failed: UPDATE requests SET user_id = '1', level = '1', rid = '6DAEDW50FJ' WHERE rid=6DAEDW50FJ
+12:15 AM [DatabaseHandler] - Query execution failed: UPDATE requests SET user_id = '1', level = '1', rid = '6DAEDW50FJ' WHERE rid=6DAEDW50FJ
+01:01 AM [DatabaseHandler] - Query execution failed: INSERT INTO request_history (rid, approver_id) VALUES ('CA5B16OL2R', '1')
+01:02 AM [DatabaseHandler] - Query execution failed: INSERT INTO request_history (rid, approver_id) VALUES ('CA5B16OL2R', '1')
+01:02 AM [DatabaseHandler] - Query execution failed: INSERT INTO request_history (request_id, approver_id) VALUES ('CA5B16OL2R', '1')
+01:03 AM [DatabaseHandler] - Query execution failed: INSERT INTO request_history (request_id, approver_id) VALUES ('CA5B16OL2R', '1')
+07:54 AM [LoginController] - User carloboado18@gmail.com login successful.

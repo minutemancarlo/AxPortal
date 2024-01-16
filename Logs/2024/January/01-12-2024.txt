@@ -1,0 +1,3 @@
+12:00 AM [LoginController] - User s4dev.main@gmail.com login successful.
+12:00 AM [LoginController] - User carloboado18@gmail.com login successful.
+07:19 PM [LoginController] - User carloboado18@gmail.com login successful.

@@ -1,0 +1,6 @@
+12:00 PM [LoginController] - User carloboado18@gmail.com login successful.
+12:01 PM [LoginController] - User carloboado18@gmail.com login successful.
+12:03 PM [LoginController] - User cboado@teligent.ph login successful.
+08:09 PM [LoginController] - User cboado@teligent.ph login successful.
+10:04 PM [DatabaseHandler] - Query execution failed: SELECT requests a inner join projects b on a.project_id=b.id inner join jobs c on a.job_id=c.id inner join users d on a.user_id=d.id left join request_history e on a.rid=e.request_id FROM a.*,b.project_name,c.category_name,d.name WHERE 
+10:05 PM [DatabaseHandler] - Query execution failed: SELECT requests a inner join projects b on a.project_id=b.id inner join jobs c on a.job_id=c.id inner join users d on a.user_id=d.id left join request_history e on a.rid=e.request_id FROM a.*,b.project_name,c.category_name,d.name

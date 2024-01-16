@@ -1,0 +1,6 @@
+10:34 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com
+10:35 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com
+10:36 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com
+10:36 PM [DatabaseHandler] - Query execution failed: UPDATE member SET is_verified = '1' WHERE email = 'carloboado18@gmail.com'
+10:38 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com
+10:39 PM [EmailApi] - Email Verification sent to carloboado18@gmail.com

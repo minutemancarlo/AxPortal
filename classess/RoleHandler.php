@@ -61,15 +61,11 @@ public function getNewUsers() {
               <a href="index.php"><i class="fas fa-home"></i> Dashboard</a>
             </li>
             <li>
-              <a href="users.php"><i class="fas fa-user-friends"></i> Users <span class="badge rounded-pill bg-primary">'.($newUsers!=0?$newUsers:'').'</span></a>
+              <a href="users.php"><i class="fas fa-user-friends"></i> Users <!--span class="badge rounded-pill bg-primary">'.($newUsers!=0?$newUsers:'').'</span--></a>
             </li>
             <li>
-              <a href="requests.php"><i class="fas fa-book"></i> Requests <span class="badge rounded-pill bg-primary">1</span></a>
-            </li>
-            <li>
-              <a href="settings.php"><i class="fas fa-cog"></i> System Management</a>
-            </li>
-
+              <a href="requests.php"><i class="fas fa-book"></i> Requests <!--span class="badge rounded-pill bg-primary">1</span--></a>
+            </li>          
             ';
         } else {
             // Standard User menu tags
@@ -78,7 +74,7 @@ public function getNewUsers() {
               <a href="index.php"><i class="fas fa-home"></i> Dashboard</a>
             </li>
             <li>
-              <a href="requests.php"><i class="fas fa-book"></i> Requests <span class="badge rounded-pill bg-primary">1</span></a>
+              <a href="requests.php"><i class="fas fa-book"></i> Requests <!--span class="badge rounded-pill bg-primary">1</span--></a>
             </li>
             ';
         }

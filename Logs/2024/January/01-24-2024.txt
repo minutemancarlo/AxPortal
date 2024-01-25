@@ -1,0 +1,21 @@
+12:01 AM [LoginController] - User carloboado18@gmail.com login successful.
+12:15 AM [EmailApi] - Request Status Update sent to carloboado18@gmail.com
+12:16 AM [EmailApi] - Request Status Update sent to carloboado18@gmail.com
+12:17 AM [EmailApi] - Request Status Update sent to carloboado18@gmail.com
+12:18 AM [EmailApi] - Request Status Update sent to carloboado18@gmail.com
+12:18 AM [EmailApi] - Request Status Update sent to carloboado18@gmail.com
+01:30 AM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+01:31 AM [LoginController] - User s4dev.main@gmail.com login successful.
+07:48 AM [LoginController] - User carloboado18@gmail.com login successful.
+07:33 PM [LoginController] - User cboado@teligent.ph login successful.
+07:35 PM [EmailApi] - Email Verification sent to joshuaborbon0828@gmail.com
+07:38 PM [LoginController] - User joshuaborbon0828@gmail.com login successful.
+07:38 PM [LoginController] - User joshuaborbon0828@gmail.com login successful.
+07:38 PM [EmailApi] - Request Status Update sent to joshuaborbon0828@gmail.com
+07:39 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+07:39 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:16 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:20 PM [DatabaseHandler] - Query execution failed: UPDATE users SET Password = '$2y$10$Pd9x4JtuuevDLzcbchhE4O.KGvetzULpqqHzesH7xYxUFbaENeKye' WHERE users = '1'
+08:20 PM [DatabaseHandler] - Query execution failed: UPDATE users SET Password = '$2y$10$ZTbH80s9iqqLTXwe2so40u50K.snw1wFQ/1LoecA/KPQoG4xO/zQO' WHERE users = '1'
+08:21 PM [DatabaseHandler] - Query execution failed: UPDATE users SET Password = '$2y$10$db.NCCnrrXh9sRNTIO6qBeLLPsdQ6DiFNrVebdBw5vVve0hXnZgBu' WHERE users = '1'
+08:21 PM [LoginController] - User carloboado18@gmail.com login successful.

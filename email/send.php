@@ -55,8 +55,18 @@ $name=$_POST['name'];
         include 'email_verification.php';
         break;
 
-      case 'resetpassword':
-        include 'password_reset_template.php';
+      case 'status_update':
+      $statusRequest = $_POST['statusRequest'];
+      $updatedBy = $_POST['updatedBy'];
+      $dateTime  = $_POST['dateTime'];
+      $requestNo = $_POST['requestNo'];
+      $status = $_POST['status'];
+        include 'status_update.php';
+        break;
+        
+      case 'password':
+        $tempPassword = $_POST['password'];
+        include 'reset-password.php';
         break;
     }
 

@@ -17,8 +17,8 @@
                         <div class="dropdown-menu dropdown-menu-end nav-link-menu" aria-labelledby="nav1">
                             <ul class="nav-list">
                                 <li><a href="logs.php" class="dropdown-item"><i class="fas fa-list"></i> Logs</a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a href="../controllers/backup.php" class="dropdown-item"><i class="fas fa-database"></i> Back ups</a></li>                                                               
+                                <!--div class="dropdown-divider"></div>
+                                <li><a href="../controllers/backup.php" class="dropdown-item"><i class="fas fa-database"></i> Back ups</a></li-->
                             </ul>
                         </div>
                     </div>

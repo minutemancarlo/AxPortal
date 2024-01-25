@@ -21,6 +21,17 @@ $(document).ready(function() {
   });
   getRequestStatus();
 
+  $('#approval_status').change(function () {
+             if ($(this).val() === '0') {
+               $("#reject_description_container").attr("hidden", false);
+               $("#reject_description").attr("disabled", false);
+               $("#reject_description").val('');
+             }else{
+               $("#reject_description_container").attr("hidden", true);
+               $("#reject_description").attr("disabled", true);
+               $("#reject_description").val('');
+             }
+         });
 
 
   function getRequestStatus(){
@@ -34,7 +45,7 @@ $(document).ready(function() {
         success: function(response) {
             // console.log(response);
             var data = JSON.parse(JSON.stringify(response));
-            $("#approvalCount").html(data.Pending);
+            // $("#approvalCount").html(data.Pending);
             $("#pendingCount").html(data.Pending);
             $("#auxiliaryCount").html(data.Auxiliary);
             $("#councilorCount").html(data.Councilor);
@@ -64,50 +75,78 @@ $(document).ready(function() {
 
 
   $('#requestForm').submit(function(event) {
-    event.preventDefault();
-    var successCallback = function(response) {
-      console.log(response);
-      var data = JSON.parse(JSON.stringify(response));
-      if (data.success) {
-        Swal.fire({
-          title: "Submitted!",
-          text: "Request On Queued!",
-          icon: "success"
-        }).then(() => {
-          location.reload();
-        });
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: data.message,
-          icon: "error"
-        });
-      }
-    };
+      event.preventDefault();
 
-    var errorCallback = function(xhr, status, error) {
-      var errorMessage = xhr.responseText;
-      console.log('AJAX request error:', errorMessage);
-      Swal.fire({
-        title: "Error!",
-        text: data.message,
-        icon: "error"
+      var loadingSwal;
+
+      var successCallback = function(response) {
+          console.log(response);
+          var data = JSON.parse(JSON.stringify(response));
+          if (data.success) {
+              Swal.fire({
+                  title: "Submitted!",
+                  text: "Request On Queued!",
+                  icon: "success"
+              }).then(() => {
+                  location.reload();
+              });
+          } else {
+              Swal.fire({
+                  title: "Error!",
+                  text: data.message,
+                  icon: "error"
+              });
+          }
+      };
+
+      var errorCallback = function(xhr, status, error) {
+          var errorMessage = xhr.responseText;
+          console.log('AJAX request error:', errorMessage);
+          Swal.fire({
+              title: "Error!",
+              text: "An error occurred during the request.",
+              icon: "error"
+          });
+      };
+
+      var formData = new FormData(this);
+      formData.append("action", "insert");
+
+      // Use willOpen callback to customize behavior before Swal is displayed
+      loadingSwal = Swal.fire({
+          title: 'Loading...',
+          allowOutsideClick: false,
+          showCancelButton: false,
+          showConfirmButton: false,
+          willOpen: () => {
+              Swal.showLoading();
+          }
       });
-    };
-    var formData = new FormData(this);
-    formData.append("action", "insert");
-    $.ajax({
-      url: '../controllers/requestController.php',
-      type: 'POST',
-      data: formData,
-      dataType: 'json',
-      processData: false,
-      contentType: false,
-      success: successCallback,
-      error: errorCallback
-    });
+
+      $.ajax({
+          url: '../controllers/requestController.php',
+          type: 'POST',
+          data: formData,
+          dataType: 'json',
+          processData: false,
+          contentType: false,
+          success: function(response) {
+              successCallback(response);
+          },
+          error: function(xhr, status, error) {
+              errorCallback(xhr, status, error);
+          },
+          complete: function() {
+              // Close Swal in the complete callback if needed
+              if (loadingSwal) {
+                  loadingSwal.close();
+              }
+          }
+      });
   });
 
+
+  let count=0;
   var table=$('#requestsTable').DataTable({
   processing: true,
 
@@ -120,6 +159,8 @@ $(document).ready(function() {
     cache: false
   },
   columns: [
+    { title: 'Name', data: "name", visible: false},
+    { title: 'reject_description', data: "reject_description", visible: false},
     { title: 'Request ID', data: "rid", visible: true,
     render: function(data, type, row, meta) {
         return '<a href="#" class="request_id text-primary"  data-id="' + data + '">' + data + '</a>';
@@ -151,7 +192,6 @@ $(document).ready(function() {
         badgeClass = 'bg-primary'; // Bootstrap success color for "In-Progress" status
         statusText = 'In-Progress';
       }
-
       // Creating a badge with Bootstrap classes
       return `<span class="badge ${badgeClass}">${statusText}</span>`;
     }
@@ -159,12 +199,30 @@ $(document).ready(function() {
     { title: 'Created On', data: "created_on", visible: true},
     // { title: 'Updated On', data: "updated_on", visible: true},
   ],
-  // order: [[1, 'desc']],
+  order: [[7, 'desc']],
   createdRow: function (row, data, dataIndex) {
-    // if (data.is_rejected == '1') {
-    //     $(row).addClass('text-danger');
-    // }
 
+      var statusColumn = $('td:eq(5)', row);
+      var statusHtml = $('span', statusColumn).html();
+
+switch ($("#roleid").val()) {
+  case "0":
+    if (statusHtml=="Pending" || statusHtml=="In-Progress"    ) {
+      count++;
+    }
+    break;
+  case "1":
+    if (statusHtml=="Pending" || statusHtml=="In-Progress") {
+      count++;
+    }
+    break;
+  case "3":
+    if (statusHtml=="Pending" || statusHtml=="In-Progress") {
+      count++;
+    }
+    break;
+}
+  $("#approvalCount").html(count);
   }
   });
 
@@ -178,12 +236,14 @@ $(document).ready(function() {
     $('#requestModal').modal('show');
 
     $('#requestModal_id').html(data);
+    $('#r_name').html(rowData.name);
     $('#requestFormUpdate').find('select[name="project_id"]').val(rowData.project_id);
     $('#requestFormUpdate').find('select[name="job_id"]').val(rowData.job_id);
     $('#requestFormUpdate').find('textarea[name="description"]').val(rowData.description);
     $('#requestFormUpdate').find('textarea[name="jobdescription"]').val(rowData.jobdescription);
     $('#requestFormUpdate').find('textarea[name="projectdescription"]').val(rowData.projectdescription);
     $('#requestFormUpdate').find('input[name="level"]').val(rowData.level);
+    $('#requestFormUpdate').find('input[name="reject_description"]').val(rowData.reject_description);
     var createdDate = new Date(rowData.created_on);
 
 // Format the date as "MMMM DD, YYYY h:mm:ss A"
@@ -209,11 +269,22 @@ var formattedDate = createdDate.toLocaleString('en-US', {
     if(rowData.level==4 || rowData.is_rejected==1){
       $('#requestFormUpdate').find('select[name="approval_status"]').attr("hidden", true);
       $('#approval_label').attr("hidden", true);
+      $('#submit').attr("hidden", true);
+      if(rowData.is_rejected==1){
+      $("#reject_description").attr("disabled", true);
+      $("#reject_description_container").attr("hidden", false);
+    }else{
+      $("#reject_description_container").attr("hidden", true);
+    }
+
+
      }else{
         $('#requestFormUpdate').find('select[name="approval_status"]').removeAttr("hidden");
         $('#approval_label').removeAttr("hidden");
+        $('#submit').removeAttr("hidden");
+
     }
-    var approvalStatusArray = ["Auxiliary Approval", "Councilor Approval", "Auxiliary Final Approval", "Approved"];
+    var approvalStatusArray = ["Auxiliary", "Councilor", "Auxiliary Final Approval", "Approved"];
     var approvalStatusIcon = ["check", "times", "sync"];
     var statusColor = ['secondary','success','danger'];
 
@@ -240,54 +311,93 @@ var formattedDate = createdDate.toLocaleString('en-US', {
     $('#request_timeline ul').empty();
 });
 
-  $('#requestFormUpdate').submit(function(event) {
-    event.preventDefault();
-    var successCallback = function(response) {
+$('#requestFormUpdate').submit(function(event) {
+  event.preventDefault();
+
+  var loadingSwal;
+
+  var successCallback = function(response) {
       console.log(response);
       var data = JSON.parse(JSON.stringify(response));
       if (data.success) {
-        Swal.fire({
-          title: "Updated!",
-          text: "Request Status Updated!",
-          icon: "success"
-        }).then(() => {
-          location.reload();
-        });
+          Swal.fire({
+              title: "Updated!",
+              text: "Request Status Updated!",
+              icon: "success"
+          }).then(() => {
+              location.reload();
+          });
       } else {
-        Swal.fire({
-          title: "Error!",
-          text: data.message,
-          icon: "error"
-        });
+          Swal.fire({
+              title: "Error!",
+              text: data.message,
+              icon: "error"
+          });
       }
-    };
+  };
 
-    var errorCallback = function(xhr, status, error) {
+  var errorCallback = function(xhr, status, error) {
       var errorMessage = xhr.responseText;
       console.log('AJAX request error:', errorMessage);
       Swal.fire({
-        title: "Error!",
-        text: data.message,
-        icon: "error"
+          title: "Error!",
+          text: "An error occurred during the request.",
+          icon: "error"
       });
-    };
-    var formData = new FormData(this);
-    formData.append("action", "update");
-    formData.append("rid", $('#requestModal_id').html());
-    $.ajax({
+  };
+
+  var formData = new FormData(this);
+  formData.append("action", "update");
+  formData.append("rid", $('#requestModal_id').html());
+
+  loadingSwal = Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      showCancelButton: false,
+      showConfirmButton: false,
+      willOpen: () => {
+          Swal.showLoading();
+      }
+  });
+
+  $.ajax({
       url: '../controllers/requestController.php',
       type: 'POST',
       data: formData,
       dataType: 'json',
       processData: false,
       contentType: false,
-      success: successCallback,
-      error: errorCallback
-    });
+      success: function(response) {
+          successCallback(response);
+      },
+      error: function(xhr, status, error) {
+          errorCallback(xhr, status, error);
+      },
+      complete: function() {
+          // Close Swal in the complete callback if needed
+          if (loadingSwal) {
+              loadingSwal.close();
+          }
+      }
   });
+});
 
-  var timer = setInterval(function() {
-      getRequestStatus();
-  }, 10000); // 10 seconds interval
+
+var timer = setInterval(function() {
+    getRequestStatus();
+    count=0;
+    getCurrentPage().then(function(currentPage) {
+        table.ajax.reload(function () {
+            table.page(currentPage).draw('page');
+        });
+    });
+
+}, 10000);
+
+function getCurrentPage() {
+    return new Promise(function(resolve) {
+        resolve(table.page());
+    });
+}// 10 seconds interval
 
 });

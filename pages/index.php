@@ -61,7 +61,7 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
                                 <div class="content">
                                     <div class="head">
                                         <h5 class="mb-0">Service Requests Categories</h5>
-                                        <p class="text-muted">All Pending and In-Progress Projects</p>
+                                        <p class="text-muted">All Service Categories Requested</p>
                                     </div>
                                     <div class="canvas-wrapper">
                                         <table class="table table-striped" id="serviceTable" width="100%">
@@ -76,7 +76,7 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
                                 <div class="content">
                                     <div class="head">
                                         <h5 class="mb-0">Job Types/Services</h5>
-                                        <p class="text-muted">All Pending and In-Progress Requests</p>
+                                        <p class="text-muted">All Job Services Requested</p>
                                     </div>
                                     <div class="canvas-wrapper">
                                         <table class="table table-striped" id="jobTable" width="100%">

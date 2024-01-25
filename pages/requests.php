@@ -24,6 +24,7 @@ $uid = $session->getSessionVariable("Id");
 $roleName = $roleHandler->getRoleName($roleValue);
 $menuTags = $roleHandler->getMenuTags($roleValue);
 $newUsers = $roleHandler->getNewUsers();
+$validate = $settings->validateForms();
 
  ?>
 <!doctype html>
@@ -82,6 +83,7 @@ $newUsers = $roleHandler->getNewUsers();
 </head>
 
 <body>
+<input type="text" id="roleid" value="<?php echo $roleValue; ?>" hidden>
     <div class="wrapper">
       <?php include 'sidebar.php'; ?>
       <div id="body" class="active">
@@ -365,7 +367,8 @@ $newUsers = $roleHandler->getNewUsers();
         <form method="post" action="" id="requestFormUpdate" novalidate>
           <input type="text" name="user_id" value="<?php echo $uid; ?>" hidden>
           <input type="text" name="level" hidden>
-
+          <p>Name of Requesting Unit: <strong id="r_name"></strong> </p>
+          <hr>
             <div class="mb-3">
                 <label for="project" class="form-label fw-bold">Purpose of the service requested</label>
                 <select class="form-select" name="project_id" aria-label="project" id="projects" disabled>
@@ -406,11 +409,19 @@ $newUsers = $roleHandler->getNewUsers();
             <div class="mb-3" <?php if($roleValue==2){ echo "hidden";} ?>>
               <label for="approval_status" id="approval_label" class="form-label fw-bold">Approval Status</label>
 
-              <select class="form-select" name="approval_status" aria-label="approval_status" id="" >
+              <select class="form-select" name="approval_status" aria-label="approval_status" id="approval_status" required>
                 <option selected>Select</option>
                 <option value='1'>Approve</option>
                 <option value='0'>Reject</option>
               </select>
+              <div class="invalid-feedback">
+                Approval Status is required
+              </div>
+          </div>
+
+          <div class="mb-3" id="reject_description_container" hidden>
+            <label for="Description" class="form-label fw-bold">Rejection Reason</label>
+            <textarea class="form-control" name="reject_description" id="reject_description" rows="3"></textarea>
           </div>
 
           <div class="mb-3 p-5 card">
@@ -427,7 +438,7 @@ $newUsers = $roleHandler->getNewUsers();
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <?php if($roleValue!=2){
-            echo '<button type="submit" class="btn btn-primary">Save changes</button>';
+            echo '<button type="submit" class="btn btn-primary" id="submit">Save changes</button>';
         }
         ?>
 
@@ -446,7 +457,7 @@ $newUsers = $roleHandler->getNewUsers();
     <script type="text/javascript">
       <?php echo $sweetAlert; ?>
       <?php echo $ajax; ?>
-      <?php //echo $validate; ?>
+      <?php echo $validate; ?>
 
     </script>
     <script src="../assets/js/pages/<?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>.js"></script>

@@ -7,15 +7,56 @@ $session = new CustomSessionHandler();
 $settings=new SystemSettings();
 $db = new DatabaseHandler();
 $roleHandler = new RoleHandler();
-
+$baseURL = $settings->getBaseURL();
 if (isset($_POST['action'])) {
   switch ($_POST['action']) {
     case 'insert':
     unset($_POST['action']);
-    $_POST['rid']=generateUniqueID();
+    $_POST['rid']=date("Y").generateUniqueID().date("m").date('d');
     $postData=$_POST;
     $insertResult = $db->insert('requests', $postData);
     if($insertResult){
+      $result = $db->select("requests a inner join users b on a.user_id = b.id", "*", "a.rid = '".$_POST['rid']."'");
+      if ($result->num_rows > 0) {
+
+          while ($row = $result->fetch_assoc()) {
+              $requestNo = $row['rid'];
+              if ($row['level'] == 0) {
+                  // Your existing code for processing each record and sending emails
+                  $statusRequest = "Created";
+                  $updatedBy = "End-User";
+                  $dateTime  = date('m/d/Y h:i:s A T', strtotime($row['created_on']));
+                  $email = $row['email'];
+                  $subject = 'Request Status Update';
+                  $action='status_update';
+                  $name=$row['name'];
+
+                  // Define the URL endpoint
+                  $url = $baseURL . 'email/send.php'; // Replace with the actual URL
+
+                  // Create an array with the POST data
+                  $data = array(
+                      'email' => $email,
+                      'subject' => $subject,
+                      'link' => '',
+                      'name' => ucwords($name),
+                      'action' => $action,
+                      'statusRequest' => $statusRequest,
+                      'updatedBy' => $updatedBy,
+                      'dateTime' => $dateTime,
+                      'requestNo' => $requestNo,
+                      'status' => 'Pending'
+                  );
+                  sendEmail($url,$data);
+
+              } else {
+                  // Additional logic for other cases if needed
+              }
+          }
+      }
+
+
+
       $response = array("success" => true, "message" => "Request Submitted");
   } else {
       $response = array("success" => false, "message" => "Failed to insert request.");
@@ -28,7 +69,11 @@ if (isset($_POST['action'])) {
       case 'update':
       unset($_POST['action']);
       $level=$_POST['approval_status']==1?1:0;
+      if($level==0){
+        $_POST['is_rejected']=1;
+      }
       unset($_POST['approval_status']);
+      unset($_POST['user_id']);
       $_POST['level']=(int)$_POST['level']+$level;
       $postData=$_POST;
       $where="rid='".$_POST['rid']."'";
@@ -36,8 +81,78 @@ if (isset($_POST['action'])) {
       if($updateResult){
         $history = array(
           'request_id' => $_POST['rid'],
-          'approver_id' => $_POST['user_id']
+          'approver_id' => $session->getSessionVariable("Id")
         );
+        //emails
+
+        $result = $db->select("requests a inner join users b on a.user_id = b.id", "*", "a.rid = '".$_POST['rid']."'");
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                $requestNo = $row['rid'];
+                if ($row['level']) {
+                    // Your existing code for processing each record and sending emails
+
+
+                    switch ($row['level']) {
+                      case '1':
+                        $updatedBy = 'Auxiliary';
+                        $statusRequest = $row['is_rejected']==0?"Approved":"Rejected";
+                        $status =  $row['is_rejected']==0?"In-Progress":"Rejected";
+                        break;
+                        case '2':
+                          $updatedBy = 'Councilor';
+                          $statusRequest = $row['is_rejected']==0?"Approved":"Rejected";
+                          $status =  $row['is_rejected']==0?"In-Progress":"Rejected";
+                          break;
+                          case '3':
+                            $updatedBy = 'Auxiliary';
+                            $statusRequest = $row['is_rejected']==0?"Approved":"Rejected";
+                            $status =  $row['is_rejected']==0?"In-Progress":"Rejected";
+                            break;
+                            case '4':
+                              $updatedBy = 'Auxiliary';
+                              $statusRequest = $row['is_rejected']==0?"Approved":"Rejected";
+                              $status =  $row['is_rejected']==0?"Approved":"Rejected";
+                              break;
+
+                    }
+
+                    $dateTime  = date('m/d/Y h:i:s A T', strtotime($row['created_on']));
+                    $email = $row['email'];
+                    $subject = 'Request Status Update';
+                    $action='status_update';
+                    $name=$row['name'];
+
+                    // Define the URL endpoint
+                    $url = $baseURL . 'email/send.php'; // Replace with the actual URL
+
+                    // Create an array with the POST data
+                    $data = array(
+                        'email' => $email,
+                        'subject' => $subject,
+                        'link' => '',
+                        'name' => ucwords($name),
+                        'action' => $action,
+                        'statusRequest' => $statusRequest,
+                        'updatedBy' => $updatedBy,
+                        'dateTime' => $dateTime,
+                        'requestNo' => $requestNo,
+                        'status' => $status
+                    );
+                    sendEmail($url,$data);
+
+                } else {
+                    // Additional logic for other cases if needed
+                }
+            }
+        }
+
+        //emails
+
+
+
+
         if($level==0){
           $response = array("success" => true, "message" => "Request Updated");
         }else{
@@ -58,12 +173,37 @@ if (isset($_POST['action'])) {
 
     case 'select-per-user-request':
     // getUserRequests($userid,$status, $is_rejected)
-      $pending=$roleHandler->getUserRequests($session->getSessionVariable("Id"),0,0);
-      $auxiliary=$roleHandler->getUserRequests($session->getSessionVariable("Id"),1,0);
-      $councilor=$roleHandler->getUserRequests($session->getSessionVariable("Id"),2,0);
-      $finalApproval=$roleHandler->getUserRequests($session->getSessionVariable("Id"),3,0);
-      $approved=$roleHandler->getUserRequests($session->getSessionVariable("Id"),4,0);
-      $rejected=$roleHandler->getUserRequests($session->getSessionVariable("Id"),0,1);
+    // 0 - Super User
+    // 1 - Auxiliary
+    // 2 - End-User
+    // 3 - Councilor
+
+
+      $is_enduser=$session->getSessionVariable("Role")==2?true:false;
+      $userrole=(int)$session->getSessionVariable("Role")-1;
+      $where='';
+      if($is_enduser){
+          $where="user_id=".$session->getSessionVariable("Id")." and ";
+          $pending=getCount($where."level=0 and is_rejected=0");
+          $auxiliary=getCount($where."level=1 and is_rejected=0");
+          $councilor=getCount($where."level=2 and is_rejected=0");
+          $finalApproval=getCount($where."level=3 and is_rejected=0");
+          $approved=getCount($where."level=4 and is_rejected=0");
+          $rejected=getCount($where."is_rejected=1");
+      }else{
+        if($userrole==0){
+          $pending=getCount($where."is_rejected=0");
+        }else{
+
+          $pending=getCount($where."level=".$userrole." and is_rejected=0");
+          echo $where."level=".$userrole." and is_rejected=0";
+        }
+        $auxiliary=getCount($where."level=1 and is_rejected=0");
+        $councilor=getCount($where."level=2 and is_rejected=0");
+        $finalApproval=getCount($where."level=3 and is_rejected=0");
+        $approved=getCount($where."level=4 and is_rejected=0");
+        $rejected=getCount($where."is_rejected=1");
+      }
 
       $statusCounts = array(
         'Pending' => $pending,
@@ -80,15 +220,15 @@ if (isset($_POST['action'])) {
       case 'select-all-requests-user':
       $userid=$session->getSessionVariable("Id");
       $role=$session->getSessionVariable("Role");
-      $table = 'requests a inner join projects b on a.project_id=b.id inner join jobs c on a.job_id=c.id';
+      $table = 'requests a inner join projects b on a.project_id=b.id inner join jobs c on a.job_id=c.id inner join users d on a.user_id=d.id';
       switch ($role) {
         case 0:
         //Superuser
-          $where = 'level in (0,1,2,3,4) and is_rejected=0 order by a.created_on desc';
+          $where = 'level in (0,1,2,3,4) or is_rejected=1 order by a.created_on desc';
           break;
         case 1:
         //Auxiliary
-          $where = 'level in (0,2,4) and is_rejected=0 order by a.created_on desc';
+          $where = 'level in (0,2,4) or is_rejected=1 order by a.created_on desc';
           break;
         case 2:
         //End User
@@ -96,7 +236,7 @@ if (isset($_POST['action'])) {
           break;
         case 3:
         //Councilor
-          $where = 'level=1 and is_rejected=0 order by a.created_on desc';
+          $where = 'level=1 or is_rejected=1 order by a.created_on desc';
           break;
       }
       $columns = "*,
@@ -107,6 +247,7 @@ if (isset($_POST['action'])) {
         WHEN a.level = 4 THEN 'Completed'
     END AS status_name,
     CASE
+        WHEN a.is_rejected=1 THEN ''
         WHEN a.level = 0 THEN 'Auxiliary'
         WHEN a.level = 1 THEN 'Councilor'
         WHEN a.level = 2 THEN 'Auxiliary'
@@ -136,6 +277,44 @@ if (isset($_POST['action'])) {
           }
         break;
 }
+}
+
+
+function getCount($condition){
+  $db = new DatabaseHandler();
+  $result = $db->select("requests", "*", $condition);
+  $rowCount = $result->num_rows;
+  return $rowCount;
+}
+
+function sendEmail($url,$data){
+  // Initialize cURL session
+  $ch = curl_init();
+
+  // Set cURL options
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+  // Execute cURL request and get the response
+  $response = curl_exec($ch);
+
+  // Check for cURL errors
+  if (curl_errno($ch)) {
+      $error = curl_error($ch);
+      // Handle the error as needed
+  } else {
+      // Process the response
+      // $responseData = json_decode($response, true);
+      // Access the response data using $responseData array
+  }
+
+  // Close cURL session
+  curl_close($ch);
+  // Successful insert
 }
 
 function generateUniqueID() {

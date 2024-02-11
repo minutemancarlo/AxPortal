@@ -272,7 +272,7 @@ $validate = $settings->validateForms();
                                               </div>
                                           </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-12">
                                                 <div class="card">
                                                     <div class="content">
@@ -295,7 +295,7 @@ $validate = $settings->validateForms();
                                                     </div>
                                                 </div>
                                             </div>
-                                          </div>
+                                          </div> -->
                                           <div class="row">
                                               <div class="col-md-12">
                                                   <div class="card">
@@ -368,6 +368,7 @@ $validate = $settings->validateForms();
           <input type="text" name="user_id" value="<?php echo $uid; ?>" hidden>
           <input type="text" name="level" hidden>
           <p>Name of Requesting Unit: <strong id="r_name"></strong> </p>
+          <p>Date Requested: <strong id="r_date"></strong> </p>
           <hr>
             <div class="mb-3">
                 <label for="project" class="form-label fw-bold">Purpose of the service requested</label>
@@ -410,7 +411,6 @@ $validate = $settings->validateForms();
               <label for="approval_status" id="approval_label" class="form-label fw-bold">Approval Status</label>
 
               <select class="form-select" name="approval_status" aria-label="approval_status" id="approval_status" required>
-                <option selected>Select</option>
                 <option value='1'>Approve</option>
                 <option value='0'>Reject</option>
               </select>
@@ -430,6 +430,34 @@ $validate = $settings->validateForms();
               <ul class="timeline-with-icons">
 
               </ul>
+
+              <div id="divFeedback">
+
+                <div class="mb-3 mt-3">
+                  <label for="comment" id="feedbackLabel">Feedback:</label>
+                  <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+                </div>
+                <button type="button" id="submitBtn" class="btn btn-primary" >Submit</button>
+
+
+            </div>
+
+              <?php
+              // if($roleValue==2){
+              //     echo '<form  method="post" action="" id="requestFeedback" novalidate>
+              //       <div class="mb-3 mt-3">
+              //         <label for="comment">Feedback:</label>
+              //         <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+              //       </div>
+              //       <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+              //     </form>';
+              // }else{
+              //   echo '  <div class="mb-3 mt-3">
+              //       <label for="comment">Feedback:</label>
+              //       <textarea class="form-control" rows="5" id="feedback" name="feedback" disabled></textarea>
+              //     </div>';
+              // }
+               ?>
             </section>
           </div>
 
@@ -458,7 +486,7 @@ $validate = $settings->validateForms();
       <?php echo $sweetAlert; ?>
       <?php echo $ajax; ?>
       <?php echo $validate; ?>
-
+      <?php echo "var r=".$roleValue; ?>
     </script>
     <script src="../assets/js/pages/<?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>.js"></script>
 </body>

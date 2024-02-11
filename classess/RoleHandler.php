@@ -65,7 +65,7 @@ public function getNewUsers() {
             </li>
             <li>
               <a href="requests.php"><i class="fas fa-book"></i> Requests <!--span class="badge rounded-pill bg-primary">1</span--></a>
-            </li>          
+            </li>
             ';
         } else {
             // Standard User menu tags

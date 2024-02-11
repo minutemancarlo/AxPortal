@@ -1,0 +1,3 @@
+08:17 PM [EmailApi] - Email Verification sent to jborbon@student.dmmmsu.edu.ph
+09:05 PM [EmailApi] - Password Reset sent to carloboado18@gmail.com
+09:06 PM [LoginController] - User carloboado18@gmail.com login successful.

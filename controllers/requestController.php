@@ -74,7 +74,9 @@ if (isset($_POST['action'])) {
       }
       unset($_POST['approval_status']);
       unset($_POST['user_id']);
+      if($_POST['level']<3){
       $_POST['level']=(int)$_POST['level']+$level;
+      }
       $postData=$_POST;
       $where="rid='".$_POST['rid']."'";
       $updateResult = $db->update('requests', $postData,$where);
@@ -171,6 +173,21 @@ if (isset($_POST['action'])) {
     echo json_encode($response);
         break;
 
+        case 'feedbackUpdate':
+        unset($_POST['action']);
+        $postData=$_POST;
+        $where="rid='".$_POST['rid']."'";
+        $updateResult = $db->update('requests', $postData,$where);
+        if($updateResult){
+          $response = array("success" => true, "message" => "Request Feedback Updated.");
+      } else {
+          $response = array("error" => false, "message" => "Failed to update request.");
+      }
+
+      // Send the JSON response
+      echo json_encode($response);
+          break;
+
     case 'select-per-user-request':
     // getUserRequests($userid,$status, $is_rejected)
     // 0 - Super User
@@ -196,7 +213,7 @@ if (isset($_POST['action'])) {
         }else{
 
           $pending=getCount($where."level=".$userrole." and is_rejected=0");
-          echo $where."level=".$userrole." and is_rejected=0";
+          // echo $where."level=".$userrole." and is_rejected=0";
         }
         $auxiliary=getCount($where."level=1 and is_rejected=0");
         $councilor=getCount($where."level=2 and is_rejected=0");
@@ -217,6 +234,17 @@ if (isset($_POST['action'])) {
       echo json_encode($statusCounts);
       break;
 
+      case 'select-by-request':
+      $result = $db->select("request_history a inner join users b on a.approver_id=b.id", "a.updated_on,b.name", "request_id='".$_POST["rid"]."' order by a.id asc");
+      if ($result) {
+          $data = array();
+          while ($row = $result->fetch_assoc()) {
+              $data[] = $row;
+          }
+          echo json_encode($data);
+        }
+        break;
+
       case 'select-all-requests-user':
       $userid=$session->getSessionVariable("Id");
       $role=$session->getSessionVariable("Role");
@@ -224,11 +252,11 @@ if (isset($_POST['action'])) {
       switch ($role) {
         case 0:
         //Superuser
-          $where = 'level in (0,1,2,3,4) or is_rejected=1 order by a.created_on desc';
+          $where = 'level in (0,1,2,3) or is_rejected=1 order by a.created_on desc';
           break;
         case 1:
         //Auxiliary
-          $where = 'level in (0,2,4) or is_rejected=1 order by a.created_on desc';
+          $where = 'level in (0,2,3) or is_rejected=1 order by a.created_on desc';
           break;
         case 2:
         //End User
@@ -236,15 +264,13 @@ if (isset($_POST['action'])) {
           break;
         case 3:
         //Councilor
-          $where = 'level=1 or is_rejected=1 order by a.created_on desc';
+          $where = 'level=1 or level=3 or is_rejected=1 order by a.created_on desc';
           break;
       }
       $columns = "*,
     CASE
         WHEN a.level = 1 THEN 'Auxiliary'
         WHEN a.level = 2 THEN 'Councilor'
-        WHEN a.level = 3 THEN 'For Final Approval'
-        WHEN a.level = 4 THEN 'Completed'
     END AS status_name,
     CASE
         WHEN a.is_rejected=1 THEN ''

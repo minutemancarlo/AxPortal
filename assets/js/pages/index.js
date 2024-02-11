@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-
+$.fn.dataTable.ext.errMode = 'throw';
   var jobTable=$('#serviceTable').DataTable({
   processing: true,
   "bLengthChange": false,
@@ -18,6 +18,7 @@ $(document).ready(function() {
   },
   columns: [
     { title: 'Category', data: "project_name", visible: true},
+    { title: 'For Approval', data: "for_approval_count", visible: false},
     { title: 'Pending', data: "pending_count", visible: true, className: 'text-center'},
     { title: 'In-Progress', data: "in_progress_count", visible: true, className: 'text-center'},
     { title: 'Approved', data: "approved_count", visible: true, className: 'text-center'},
@@ -28,8 +29,7 @@ $(document).ready(function() {
     if (data.project_name === 'Total') {
       $(row).hide();
       var rowData = jobTable.row(row).data();
-      console.log(rowData.pending_count);
-      $('#approvalsCount').html(rowData.pending_count);
+      $('#approvalsCount').html(rowData.for_approval_count);
       $('#inprogressCount').html(rowData.in_progress_count);
       $('#approvedCount').html(rowData.approved_count);
       $('#rejectedCount').html(rowData.rejected_count);

@@ -200,6 +200,7 @@ $(document).on('click', '.btn-action-delete', function() {
   } else if (result.isDenied) {
     is_active=0;
   }
+  return;
   var successCallback = function(response) {
       console.log(response);
       var data = JSON.parse(JSON.stringify(response));

@@ -1,0 +1,15 @@
+07:32 AM [LoginController] - User carloboado18@gmail.com login successful.
+07:33 AM [LoginController] - User cboado@teligent.ph login successful.
+07:51 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:42 AM [LoginController] - User carloboado18@gmail.com login successful.
+08:42 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:42 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:43 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:53 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:54 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:54 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:54 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+09:08 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+09:08 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+09:09 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+09:09 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph

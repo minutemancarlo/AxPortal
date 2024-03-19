@@ -1,0 +1,12 @@
+12:42 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:43 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:43 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:55 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:55 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:56 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+10:55 AM [LoginController] - User cboado@teligent.ph login successful.
+10:59 AM [LoginController] - User carloboado18@gmail.com login successful.
+11:13 AM [LoginController] - User cboado@teligent.ph login successful.
+11:13 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+09:21 PM [DatabaseHandler] - Query execution failed: SELECT email FROM users WHERE email = ''
+11:06 PM [DatabaseHandler] - Query execution failed: SELECT * FROM users WHERE email = 'cboado@teligent.ph'

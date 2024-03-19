@@ -4,3 +4,5 @@
 2024-01-23 14:36:13 Script executed
 2024-01-23 14:36:22 Script executed
 2024-01-23 14:37:15 Script executed
+2024-02-11 12:19:19 Script skipped (already running)
+2024-02-19 08:13:08 Script skipped (already running)

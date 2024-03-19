@@ -33,12 +33,14 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dashboard | <?php echo $websiteTitle; ?></title>
-    <link href="../assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="../assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="../assets/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
-    <link href="../assets/vendor/DataTables/datatables.min.css" rel="stylesheet">
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <?php echo $styles; ?>
     <link href="../assets/css/master.css" rel="stylesheet">
+    <style>
+        /* inline style for mdtimepicker demo */
+        .mdtp__wrapper.inline {display: block !important;position: relative;box-shadow: none;border: 1px solid #E0E0E0;max-width: 300px;margin: 0 !important;padding: 0 !important;transform: inherit;left: 0;top: 0;}
+        .mdtp__wrapper.inline .mdtp__time_holder {width: auto;}
+    </style>
 </head>
 
 <body>
@@ -55,6 +57,66 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
                         </div>
                     </div>
                     <?php echo $cards; ?>
+                    <!-- REPORT GENERATION -->
+                    <div class="accordion" id="accordionExample" hidden>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Generate Report
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="row">
+          <div class="col-md-6">
+
+
+
+
+                  <form class="form-control">
+                      <br>
+                      <div class="row">
+                        <div class="mb-3 col-3">
+                          <label for="">Report Filter Type</label>
+                            <select class="form-control" id="reportFilter">
+                              <option value="1">Date Range</option>
+                              <option value="2">Month</option>
+                              <option value="3">Year</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-3" id="reportMonth" hidden>
+                          <label for="">Select Month</label>
+                          <select class="form-control" name="">
+                            <?php
+                            for ($month = 1; $month <= 12; $month++) {
+                              $monthName = date('F', mktime(0, 0, 0, $month, 1));
+                              echo "<option value='$month'>$monthName\n</option>";
+                            }
+                             ?>
+                          </select>
+                        </div>
+                        <div class="mb-3 col-3">
+                          <label for="">Select Date Range</label>
+                            <input type="text" class="form-control datepicker-here" data-range="true" data-multiple-dates-separator="-" data-language="en" data-position="top left" aria-describedby="daterange" placeholder="Report Date Range">
+                             <!-- <small id="daterange" class="form-text text-muted">You can select start and end date for date range selection</small> -->
+                        </div>
+                      </div>
+
+
+
+                  </form>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                    <!-- REPORT GENERATION -->
+                    <br>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
@@ -145,12 +207,11 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
             </div>
         </div>
     </div>
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/vendor/chartsjs/Chart.min.js"></script>
-    <script src="../assets/js/dashboard-charts.js"></script>
-    <script src="../assets/vendor/datatables/datatables.min.js"></script>
-    <script src="../assets/js/initiate-datatables.js"></script>
+
+
+
+    <?php echo $scripts; ?>
+
     <script src="../assets/js/script.js"></script>
     <script type="text/javascript">
 
@@ -158,6 +219,11 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
       <?php echo $ajax; ?>
 
 
+    </script>
+
+    <script type="text/javascript">
+    // Initiate time picker
+    mdtimepicker('.timepicker', { format: 'h:mm tt', hourPadding: 'true' });
     </script>
     <script src="../assets/js/pages/<?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>.js"></script>
 </body>

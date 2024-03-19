@@ -1,0 +1,340 @@
+06:52 PM [LoginController] - User carloboado18@gmail.com login successful.
+06:52 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level between 0 and 2 and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    FROM  projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+06:52 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level between 0 and 2 and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    FROM  projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+06:52 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level between 0 and 2 and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    FROM  projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+06:53 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level between 0 and 2 and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    FROM  projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+06:53 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level between 0 and 2 and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    FROM  projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+06:56 PM [LoginController] - User s4dev.main@gmail.com login successful.
+06:56 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+07:04 PM [LoginController] - User s4dev.main@gmail.com login successful.
+07:04 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN a.level=0 or a.level=2) and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+07:04 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN a.level=0 or a.level=2) and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+07:05 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN a.level=0 or a.level=2) and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+07:05 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN a.level=0 or a.level=2) and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP
+07:06 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+07:06 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:07 PM [LoginController] - User cboado@teligent.ph login successful.
+08:07 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP WHERE where a.user_id=4
+08:07 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id
+GROUP BY
+    b.category_name WHERE where a.user_id=4
+08:07 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id
+GROUP BY
+    b.category_name WHERE where a.user_id=4
+08:07 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP WHERE where a.user_id=4
+08:07 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id
+GROUP BY
+    b.category_name WHERE where a.user_id=4
+08:07 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP WHERE where a.user_id=4
+08:08 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP WHERE a.user_id=4
+08:08 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id
+GROUP BY
+    b.category_name WHERE a.user_id=4
+08:08 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP WHERE a.user_id=4
+08:08 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id
+GROUP BY
+    b.category_name WHERE a.user_id=4
+08:08 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id
+GROUP BY
+    b.project_name WITH ROLLUP WHERE a.user_id=4
+08:08 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id
+GROUP BY
+    b.category_name WHERE a.user_id=4
+08:08 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id a.user_id=4
+GROUP BY
+    b.project_name WITH ROLLUP
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id a.user_id=4
+GROUP BY
+    b.category_name
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id a.user_id=4
+GROUP BY
+    b.category_name
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id a.user_id=4
+GROUP BY
+    b.project_name WITH ROLLUP
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id a.user_id=4
+GROUP BY
+    b.project_name WITH ROLLUP
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id a.user_id=4
+GROUP BY
+    b.category_name
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id a.user_id=4
+GROUP BY
+    b.project_name WITH ROLLUP
+08:10 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id a.user_id=4
+GROUP BY
+    b.category_name
+08:11 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id where a.user_id=4
+GROUP BY
+    b.project_name WITH ROLLUP
+08:11 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+COALESCE(COUNT(CASE WHEN  and a.is_rejected=0 THEN 1 END), 0) AS for_approval_count,
+COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 2 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+COALESCE(COUNT(CASE WHEN a.level = 3 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM 
+    projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id where a.user_id=4
+GROUP BY
+    b.project_name WITH ROLLUP
+08:16 PM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, description, rid) VALUES ('4', 'Select', '', 'Select', '', '', '202478991BFL1Q0129')
+08:16 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:17 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:23 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:25 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:25 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+08:25 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:26 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:26 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:27 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+08:27 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph

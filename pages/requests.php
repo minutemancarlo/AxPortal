@@ -34,6 +34,7 @@ $validate = $settings->validateForms();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="rl" content="<?php echo $roleValue; ?>">
     <title>Requests | <?php echo $websiteTitle; ?></title>
     <link href="../assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
     <link href="../assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
@@ -41,6 +42,9 @@ $validate = $settings->validateForms();
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/master.css" rel="stylesheet">
     <style media="screen">
+    .nowrap {
+    white-space: nowrap !important;
+    }
       label{
         font-size: 18px;
       }
@@ -158,7 +162,19 @@ $validate = $settings->validateForms();
                                   <div class="box box-primary">
                                       <div class="box-body">
                                         <div class="table-responsive">
-                                          <table width="100%" class="table table-hover no-wrap" id="requestsTable" style="font-size: 15px;">
+                                          <table width="100%" class="table table-hover" id="requestsTable" style="font-size: 15px;">
+                                          </table>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <br>
+                                <h5 <?php if($roleValue!=2){ echo "hidden";} ?>>Approved Requests</h5>
+                                <div class="card" <?php if($roleValue!=2){ echo "hidden";} ?>>
+                                  <div class="box box-primary">
+                                      <div class="box-body">
+                                        <div class="table-responsive">
+                                          <table width="100%" class="table table-hover" id="ApproverequestsTable" style="font-size: 15px;">
                                           </table>
                                         </div>
                                       </div>
@@ -411,7 +427,7 @@ $validate = $settings->validateForms();
               <label for="approval_status" id="approval_label" class="form-label fw-bold">Approval Status</label>
 
               <select class="form-select" name="approval_status" aria-label="approval_status" id="approval_status" required>
-                <option value='1'>Approve</option>
+                <option value='1'>Approved</option>
                 <option value='0'>Reject</option>
               </select>
               <div class="invalid-feedback">

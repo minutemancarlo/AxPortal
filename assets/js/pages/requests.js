@@ -145,7 +145,7 @@ $(document).ready(function() {
       });
   });
 
-  let count=0;
+  var count=0;
   var table=$('#requestsTable').DataTable({
   processing: true,
 
@@ -158,15 +158,23 @@ $(document).ready(function() {
     cache: false
   },
   columns: [
-    { title: 'Name', data: "name", visible: false},
+
     { title: 'reject_description', data: "reject_description", visible: false},
     { title: 'created_on', data: "created_on", visible: false},
     { title: 'feedback', data: "feedback", visible: false},
+    {
+    title: 'Name'.charAt(0).toUpperCase() + 'Name'.slice(1).toLowerCase(),
+    data: "name",
+    visible: true,
+    className: "text-center nowrap",
+},
     { title: 'Request ID', data: "rid", visible: true,
     render: function(data, type, row, meta) {
         return '<a href="#" class="request_id text-primary"  data-id="' + data + '">' + data + '</a>';
       }
     },
+
+
     { title: 'Service Requested', data: "project_name", visible: true},
     { title: 'Job Requested', data: "category_name", visible: true},
     { title: 'Is_rejected', data: "is_rejected", visible: false},
@@ -179,7 +187,6 @@ $(document).ready(function() {
     visible: true,
     render: function (data, type, row) {
       let badgeClass, statusText;
-
       if (data == 0 && row.is_rejected == 0) {
         badgeClass = 'bg-warning text-secondary'; // Bootstrap warning color for "Pending" status
         statusText = 'Pending';
@@ -190,10 +197,32 @@ $(document).ready(function() {
         badgeClass = 'bg-danger'; // Bootstrap danger color for "Rejected" status
         statusText = 'Rejected';
       }else {
-        badgeClass = 'bg-primary'; // Bootstrap success color for "In-Progress" status
-        statusText = 'In-Progress';
+        if($('meta[name="rl"]').attr('content')==0 && $('meta[name="rl"]').attr('content')!=1 && $('meta[name="rl"]').attr('content')!=2 && $('meta[name="rl"]').attr('content')!=3){
+          badgeClass = 'bg-warning text-secondary'; // Bootstrap success color for "In-Progress" status
+          statusText = 'For Approval';
+
+        }else if ($('meta[name="rl"]').attr('content')==2 && $('meta[name="rl"]').attr('content')!=1 && $('meta[name="rl"]').attr('content')!=0 && $('meta[name="rl"]').attr('content')!=3) {
+          badgeClass = 'bg-primary'; // Bootstrap success color for "In-Progress" status
+          statusText = 'In-Progress';
+        }else{
+          if(row.next_approver_name=='Chancellor' && $('meta[name="rl"]').attr('content')==3){
+            badgeClass = 'bg-warning text-secondary'; // Bootstrap success color for "In-Progress" status
+            statusText = 'For Approval';
+
+          }else if (row.next_approver_name=='Auxiliary' && $('meta[name="rl"]').attr('content')==1 ) {
+            badgeClass = 'bg-warning text-secondary'; // Bootstrap success color for "In-Progress" status
+            statusText = 'For Approval';
+
+          }else{
+            badgeClass = 'bg-primary'; // Bootstrap success color for "In-Progress" status
+            statusText = 'In-Progress';
+          }
+        }
+
+
       }
       // Creating a badge with Bootstrap classes
+
       return `<span class="badge ${badgeClass}">${statusText}</span>`;
     }
   },
@@ -203,38 +232,53 @@ $(document).ready(function() {
   order: [[7, 'desc']],
   createdRow: function (row, data, dataIndex) {
 
-      var statusColumn = $('td:eq(5)', row);
+      var statusColumn = $('td:eq(6)', row);
       var statusHtml = $('span', statusColumn).html();
 
-switch ($("#roleid").val()) {
+switch ($('meta[name="rl"]').attr('content')) {
   case "0":
-    if (statusHtml=="Pending" || statusHtml=="In-Progress"    ) {
+    if (statusHtml=="For Approval") {
       count++;
     }
     break;
   case "1":
-    if (statusHtml=="Pending" || statusHtml=="In-Progress") {
+    if (statusHtml=="For Approval") {
       count++;
     }
     break;
   case "3":
-    if (statusHtml=="Pending" || statusHtml=="In-Progress") {
+    if (statusHtml=="For Approval") {
       count++;
     }
     break;
 }
+
+
   $("#approvalCount").html(count);
   }
   });
 
+  var requestsTableOptions = table.settings()[0].oInit;
+  var approverequestsTable = $('#ApproverequestsTable').DataTable(requestsTableOptions);
 
+  if($('meta[name="rl"]').attr('content')==2){
+    table.column(10).search('^(?!.*Approved).*$', true, false).draw();
+    approverequestsTable.column(10).search('Approved', true, false).draw();
+  }
 
-  $('#requestsTable tbody').on('click', '.request_id', function () {
+  $('#requestsTable tbody, #ApproverequestsTable tbody').on('click', '.request_id', function () {
     var data = $(this).data('id');
     var closestRow = $(this).closest('tr');
-    var table = $('#requestsTable').DataTable();
+    var tableId = closestRow.closest('table').attr('id'); // Get the ID of the closest table
+    var table;
+    if (tableId === 'requestsTable') {
+       table = $('#requestsTable').DataTable();
+   } else if (tableId === 'ApproverequestsTable') {
+       table = $('#ApproverequestsTable').DataTable();
+   }
     var rowData = table.row(closestRow).data();
-
+    var statusColumn = closestRow.find('td:eq(6)'); // Select the 7th column
+       var statusHtml = $('span', statusColumn).html();
     $('#requestModal').modal('show');
 
     $('#requestModal_id').html(data);
@@ -262,7 +306,7 @@ var formattedDate = createdDate.toLocaleString('en-US', {
     // feedback
     // submitBtn
 
-    if(r=="2"){  // if user
+    if($('meta[name="rl"]').attr('content')=="2"){  // if user
       if(rowData.level=="0" && rowData.is_rejected=="0"){
         $('#divFeedback').prop('hidden',true); // feedback div
       }else if(rowData.level=="3" || rowData.is_rejected=="1"){
@@ -279,6 +323,7 @@ var formattedDate = createdDate.toLocaleString('en-US', {
         $('#divFeedback').prop('hidden',true); // feedback div
       }
     }else{
+
       $("#feedback").attr("disabled",true); //textarea
       $('#submitBtn').prop('hidden',true); //button
       if(rowData.level=="0" && rowData.is_rejected=="0"){
@@ -296,50 +341,13 @@ var formattedDate = createdDate.toLocaleString('en-US', {
           $('#divFeedback').prop('hidden',false); // feedback div
         }
       }
+
+
+
+
     }
-    // $("#feedback").attr("disabled",false);
-    // $('#submitBtn').prop('hidden',true);
-    // $("#feedbackLabel").prop("hidden",false);
 
 
-  //   if(r=="2"){ //if user
-  //     $("#feedback").attr("disabled",false);
-  //     if(rowData.feedback!=''){
-  //
-  //       $('#feedback').attr('disabled',true);
-  //       $('#submitBtn').prop('hidden',true);
-  //
-  //     }else{
-  //       $('#feedback').attr('disabled',false);
-  //       $('#submitBtn').attr('hidden',false);
-  //     }
-  //   if(willShow){
-  //     $("#requestFeedback").prop("hidden",true);
-  //     $("#feedback").prop("hidden",true);
-  //     $("#submitBtn").prop("hidden",true);
-  //     $("#feedbackLabel").prop("hidden",true);
-  //   }else{
-  //     $("#requestFeedback").prop("hidden",false);
-  //     $("#feedback").prop("hidden",false);
-  //     $("#submitBtn").prop("hidden",false);
-  //     $("#feedbackLabel").prop("hidden",false);
-  //   }
-  // }else{
-  //   $("#feedback").attr("disabled",true);
-  //   $("#submitBtn").attr("hidden",true);
-  // }
-    // if(rowData.is_rejected==1||rowData.level==3){
-    //   if($('#feedback').val()==''){
-    //     $('#feedback').attr("disabled", false);
-    //     $('#submitBtn').attr("hidden", false);
-    //   }else{
-    //     $('#feedback').attr("disabled", true);
-    //     $('#submitBtn').attr("hidden", true);
-    //   }
-    //   $('#requestFeedback').show();
-    // }else{
-    //   $('#requestFeedback').hide();
-    // }
 
 
     var createdDate = new Date(rowData.created_on);
@@ -381,6 +389,15 @@ var formattedDate = createdDate.toLocaleString('en-US', {
         $('#approval_label').removeAttr("hidden");
         $('#submit').removeAttr("hidden");
 
+    }
+    if(statusHtml=="In-Progress"||statusHtml=="Approved"||statusHtml=="Rejected"){
+      $('#approval_label').attr("hidden", true);
+      $('#approval_status').attr("hidden", true);
+      $('#submit').attr('hidden',true); //button
+    }else{
+      $('#approval_label').attr("hidden", false);
+      $('#approval_status').attr("hidden", false);
+      $('#submit').attr('hidden',false); //button
     }
     var approvalStatusArray = ["Auxiliary", "Chancellor", "Auxiliary Final Approval", "Approved"];
     var approvalStatusIcon = ["check", "times", "sync"];
@@ -439,7 +456,6 @@ var formattedDate = createdDate.toLocaleString('en-US', {
   });
 
   });
-
 
 
   // $('#requestModal').on('show.bs.modal', function (e) {
@@ -596,9 +612,25 @@ formData.append("feedback", $('#feedback').val());
 var timer = setInterval(function() {
     getRequestStatus();
     count=0;
+    table.rows().every(function(rowIdx, tableLoop, rowLoop) {
+      var data = this.data(); // Get data of the current row
+      approverequestsTable.row.add(data);
+    });
+
     getCurrentPage().then(function(currentPage) {
         table.ajax.reload(function () {
+          if($('meta[name="rl"]').attr('content')==2){
+            table.column(10).search('^(?!.*Approved).*$', true, false).draw();
+          }
             table.page(currentPage).draw('page');
+        });
+
+        approverequestsTable.ajax.reload(function () {
+          if($('meta[name="rl"]').attr('content')==2){
+
+            approverequestsTable.column(10).search('Approved', true, false).draw();
+          }
+            approverequestsTable.page(currentPage).draw('page');
         });
     });
 
@@ -607,6 +639,7 @@ var timer = setInterval(function() {
 function getCurrentPage() {
     return new Promise(function(resolve) {
         resolve(table.page());
+        resolve(approverequestsTable.page());
     });
 }// 10 seconds interval
 

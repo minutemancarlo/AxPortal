@@ -103,7 +103,7 @@ if (isset($_POST['action'])) {
                         $status =  $row['is_rejected']==0?"In-Progress":"Rejected";
                         break;
                         case '2':
-                          $updatedBy = 'Councilor';
+                          $updatedBy = 'Chancellor';
                           $statusRequest = $row['is_rejected']==0?"Approved":"Rejected";
                           $status =  $row['is_rejected']==0?"In-Progress":"Rejected";
                           break;
@@ -225,7 +225,7 @@ if (isset($_POST['action'])) {
       $statusCounts = array(
         'Pending' => $pending,
         'Auxiliary' => $auxiliary,
-        'Councilor' => $councilor,
+        'Chancellor' => $councilor,
         'FinalApproval' => $finalApproval,
         'Approved' => $approved,
         'Rejected' => $rejected
@@ -256,7 +256,8 @@ if (isset($_POST['action'])) {
           break;
         case 1:
         //Auxiliary
-          $where = 'level in (0,2,3) or is_rejected=1 order by a.created_on desc';
+          $table = $table." left join request_history e on e.approver_id=". $userid ." and e.id=a.rid";
+          $where = 'level in (0,1,2,3) or is_rejected=1 order by a.created_on desc';
           break;
         case 2:
         //End User
@@ -264,18 +265,19 @@ if (isset($_POST['action'])) {
           break;
         case 3:
         //Councilor
-          $where = 'level=1 or level=3 or is_rejected=1 order by a.created_on desc';
+          $table = $table." left join request_history e on e.approver_id=". $userid ." and e.id=a.rid";
+          $where = 'level in (1,2,3) or is_rejected=1 order by a.created_on desc';
           break;
       }
       $columns = "*,
     CASE
         WHEN a.level = 1 THEN 'Auxiliary'
-        WHEN a.level = 2 THEN 'Councilor'
+        WHEN a.level = 2 THEN 'Chancellor'
     END AS status_name,
     CASE
         WHEN a.is_rejected=1 THEN ''
         WHEN a.level = 0 THEN 'Auxiliary'
-        WHEN a.level = 1 THEN 'Councilor'
+        WHEN a.level = 1 THEN 'Chancellor'
         WHEN a.level = 2 THEN 'Auxiliary'
     END AS next_approver_name";
 

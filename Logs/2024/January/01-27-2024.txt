@@ -1,0 +1,111 @@
+01:58 AM [DatabaseHandler] - Query execution failed: INSERT INTO users (name, email, password, verification_token) VALUES ('Carlo C Boado', 'carloboado18@gmail.com', '$2y$10$r/FjGf7gf.EG.JREFShizOr4Yeu3SycHx3yX3QERQ.Ybwe2DkSbjC', '53YAZlB2faKjl1qTUxrXLebHnTvpGQgc')
+02:00 AM [DatabaseHandler] - Query execution failed: INSERT INTO users (name, email, password, verification_token) VALUES ('Carlo C Boado', 'carloboado18@gmail.com', '$2y$10$ibwOpo36gSc.ZGsZ1lUE5OmHZpxy7FyMpRXhcrG2fXxrUfkf3ryvq', 'qqk4XaY6NOpeSF6UiqW0IW52aClSIceX')
+02:00 AM [DatabaseHandler] - Query execution failed: INSERT INTO users (name, email, password, verification_token) VALUES ('Carlo C Boado', 'carloboado18@gmail.com', '$2y$10$Gz52NkNmMpBKPj5hR6X4euJKiKbHmQt3K2IitiUCxwVTIoobmXpLq', '7J0DVROugvTdn5fnwFH0rZwT1JUYLrb8')
+05:17 PM [LoginController] - User cboado@teligent.ph login successful.
+05:18 PM [LoginController] - User joshuaborbon0828@gmail.com login successful.
+07:06 PM [LoginController] - User carloboado18@gmail.com login successful.
+07:15 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+07:47 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:08 PM [EmailApi] - Email Verification sent to leynarddcollado@gmail.com
+08:11 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:12 PM [LoginController] - User leynarddcollado@gmail.com login successful.
+08:13 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:18 PM [EmailApi] - Request Status Update sent to joshuaborbon0828@gmail.com
+08:19 PM [LoginController] - User joshuaborbon0828@gmail.com login successful.
+08:20 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+08:21 PM [EmailApi] - Request Status Update sent to joshuaborbon0828@gmail.com
+08:22 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:23 PM [EmailApi] - Request Status Update sent to joshuaborbon0828@gmail.com
+08:24 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:25 PM [LoginController] - User leynarddcollado@gmail.com login successful.
+08:26 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:26 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+08:26 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:27 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:27 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+08:27 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:28 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:28 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:29 PM [LoginController] - User carloboado18@gmail.com login successful.
+08:29 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:33 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:33 PM [LoginController] - User s4dev.main@gmail.com login successful.
+08:34 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:35 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:35 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+08:35 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+08:37 PM [EmailApi] - Password Reset sent to leynarddcollado@gmail.com
+08:38 PM [LoginController] - User leynarddcollado@gmail.com login successful.
+08:39 PM [LoginController] - User leynarddcollado@gmail.com login successful.
+08:41 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+09:25 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+09:26 PM [LoginController] - User s4dev.main@gmail.com login successful.
+09:26 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+09:27 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+09:27 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+09:28 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+09:28 PM [LoginController] - User s4dev.main@gmail.com login successful.
+09:28 PM [EmailApi] - Request Status Update sent to leynarddcollado@gmail.com
+10:41 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+10:46 PM [LoginController] - User cboado@teligent.ph login successful.
+10:47 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+10:48 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+10:48 PM [LoginController] - User s4dev.main@gmail.com login successful.
+10:48 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+10:51 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 3 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 4 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id and level=1 or level=4 or is_rejected=1 order by a.created_on desc
+GROUP BY
+    b.category_name
+10:51 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+    COUNT(*) AS total_requests,COUNT(*) AS total_requests,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 3 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 4 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id and level=1 or level=4 or is_rejected=1 order by a.created_on desc
+GROUP BY
+    b.project_name WITH ROLLUP
+10:51 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+    COUNT(*) AS total_requests,COUNT(*) AS total_requests,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 3 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 4 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id and level=1 or level=4 or is_rejected=1 order by a.created_on desc
+GROUP BY
+    b.project_name WITH ROLLUP
+10:51 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 3 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 4 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id and level=1 or level=4 or is_rejected=1 order by a.created_on desc
+GROUP BY
+    b.category_name
+10:51 PM [DatabaseHandler] - Query execution failed: SELECT b.category_name,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 3 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 4 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM jobs b
+LEFT JOIN
+    requests a ON b.id = a.job_id and level=1 or level=4 or is_rejected=1 order by a.created_on desc
+GROUP BY
+    b.category_name
+10:51 PM [DatabaseHandler] - Query execution failed: SELECT IFNULL(b.project_name, 'Total') AS project_name,
+    COUNT(*) AS total_requests,COUNT(*) AS total_requests,
+    COALESCE(COUNT(CASE WHEN a.level = 0 and a.is_rejected=0 THEN 1 END), 0) AS pending_count,
+    COALESCE(COUNT(CASE WHEN a.level BETWEEN 1 AND 3 and a.is_rejected=0 THEN 1 END), 0) AS in_progress_count,
+    COALESCE(COUNT(CASE WHEN a.level = 4 and a.is_rejected=0 THEN 1 END), 0) AS approved_count,
+    COALESCE(COUNT(CASE WHEN a.is_rejected=1 THEN 1 END), 0) AS rejected_count FROM projects b
+LEFT JOIN
+    requests a ON b.id = a.project_id and level=1 or level=4 or is_rejected=1 order by a.created_on desc
+GROUP BY
+    b.project_name WITH ROLLUP

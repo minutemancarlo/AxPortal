@@ -38,6 +38,7 @@ class SystemSettings {
         <link href="../assets/vendor/mdtimepicker/mdtimepicker.min.css" rel="stylesheet">
         <link href="../assets/vendor/datatables/datatables.min.css" rel="stylesheet">
         <link href="../assets/vendor/sweetalert2/sweetalert2.min.css" rel="stylesheet">
+        
         ';
         $this->scripts = '
         <script src="../assets/vendor/jquery/jquery.min.js"></script>

@@ -1,0 +1,31 @@
+07:11 PM [EmailApi] - Password Reset sent to carloboado18@gmail.com
+07:12 PM [LoginController] - User carloboado18@gmail.com login successful.
+07:13 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+08:30 PM [EmailApi] - Email Verification sent to jdplays.103101@gmail.com
+08:34 PM [LoginController] - User carloboado18@gmail.com login successful.
+09:29 PM [LoginController] - User jdplays.103101@gmail.com login successful.
+09:31 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+09:31 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+09:32 PM [LoginController] - User s4dev.main@gmail.com login successful.
+09:32 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+09:42 PM [LoginController] - User jdplays.103101@gmail.com login successful.
+09:43 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+09:43 PM [LoginController] - User s4dev.main@gmail.com login successful.
+09:44 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+09:45 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+09:46 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+09:55 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+09:56 PM [LoginController] - User jdplays.103101@gmail.com login successful.
+09:57 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+09:57 PM [LoginController] - User s4dev.main@gmail.com login successful.
+09:57 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+10:12 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+11:03 PM [EmailApi] - Request Status Update sent to jdplays.103101@gmail.com
+11:04 PM [LoginController] - User s4dev.main@gmail.com login successful.
+11:04 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+11:05 PM [LoginController] - User cboado@teligent.ph login successful.
+11:05 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+11:08 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+11:16 PM [LoginController] - User carloboado18@gmail.com login successful.
+11:28 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+11:53 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph

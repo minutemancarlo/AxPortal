@@ -1,0 +1,2 @@
+11:57 PM [LoginController] - User carloboado18@gmail.com login successful.
+11:57 PM [LoginController] - User cboado@teligent.ph login successful.

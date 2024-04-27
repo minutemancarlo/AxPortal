@@ -140,9 +140,25 @@ $validate = $settings->validateForms();
                                                 Please select job requested
                                               </div>
                                             </div>
+
                                             <div class="mb-3" id="otherjob" hidden>
                                               <label for="Description" class="form-label fw-bold">Other Job Request Description</label>
                                               <textarea class="form-control" name="jobdescription" id="otherjobdescription" rows="3"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                              <label for="service" class="form-label fw-bold">Department</label>
+                                              <select class="form-select" name="department_id" aria-label="departments" id="departments" required>
+                                                <option selected>Select</option>
+                                                <?php
+                                                    $result = $db->select('departments');
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        echo '<option value="'.$row['id'].'">'.$row['dept_desc'].'</option>';
+                                                    }
+                                                 ?>
+                                              </select>
+                                              <div class="invalid-feedback">
+                                                Please select department
+                                              </div>
                                             </div>
                                             <div class="mb-3">
                                               <label for="Description" class="form-label fw-bold">Description</label>
@@ -169,8 +185,8 @@ $validate = $settings->validateForms();
                                   </div>
                                 </div>
                                 <br>
-                                <h5 <?php if($roleValue!=2){ echo "hidden";} ?>>Approved Requests</h5>
-                                <div class="card" <?php if($roleValue!=2){ echo "hidden";} ?>>
+                                <h5 >Approved Requests</h5>
+                                <div class="card" >
                                   <div class="box box-primary">
                                       <div class="box-body">
                                         <div class="table-responsive">
@@ -276,7 +292,7 @@ $validate = $settings->validateForms();
                                                           </div>
                                                           <div class="col-sm-6">
                                                               <div class="detail text-center">
-                                                                  <p class="detail-subtitle">Councilor</p>
+                                                                  <p class="detail-subtitle">Chancellor</p>
                                                                   <span class="number" id="councilorCount">0</span>
                                                               </div>
                                                           </div>
@@ -383,8 +399,37 @@ $validate = $settings->validateForms();
         <form method="post" action="" id="requestFormUpdate" novalidate>
           <input type="text" name="user_id" value="<?php echo $uid; ?>" hidden>
           <input type="text" name="level" hidden>
-          <p>Name of Requesting Unit: <strong id="r_name"></strong> </p>
-          <p>Date Requested: <strong id="r_date"></strong> </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Name of Requesting Unit: <strong id="r_name"></strong> </p>
+              <p>Date Requested: <strong id="r_date"></strong> </p>
+              <p>Department: <strong id="r_dept"></strong> </p>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 d-flex align-items-baseline">
+                <p class="fw-bold me-2 text-nowrap">Work Status</p>
+                <select class="form-select" name="workstatus" aria-label="workstatus" id="workstatus">
+                  <option value="0" selected>Pending</option>
+                  <option value="1">In-Progress</option>
+                  <option value="2">Completed</option>
+                </select>
+              </div>
+              <div class="mb-3 d-flex align-items-baseline">
+                <p class="fw-bold me-2">Assignee</p>
+                <select class="form-select" name="assignee" aria-label="assignee" id="assignee">
+                  <option value="0" selected>Select</option>
+                  <?php
+                  $result = $db->select('workers');
+                  while ($row = $result->fetch_assoc()) {
+                    echo '<option value="'.$row['worker_id'].'">'.$row['name'].' - '.$row['position'].'</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
           <hr>
             <div class="mb-3">
                 <label for="project" class="form-label fw-bold">Purpose of the service requested</label>
@@ -399,7 +444,7 @@ $validate = $settings->validateForms();
                 </select>
 
             </div>
-            <div class="mb-3" id="otherproject" hidden>
+            <div class="mb-3" id="otherproject">
               <label for="Description" class="form-label fw-bold">Other Service Request Description</label>
               <textarea class="form-control" name="projectdescription" id="otherprojectdescription" rows="3" disabled></textarea>
             </div>
@@ -415,7 +460,7 @@ $validate = $settings->validateForms();
                  ?>
               </select>
             </div>
-            <div class="mb-3" id="otherjob" hidden>
+            <div class="mb-3" id="otherjob">
               <label for="Description" class="form-label fw-bold">Other Job Request Description</label>
               <textarea class="form-control" name="jobdescription" id="otherjobdescription" rows="3" disabled></textarea>
             </div>

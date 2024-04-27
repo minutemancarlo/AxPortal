@@ -10,6 +10,32 @@ $roleHandler = new RoleHandler();
 $baseURL = $settings->getBaseURL();
 if (isset($_POST['action'])) {
   switch ($_POST['action']) {
+    case 'update-workstatus':
+    unset($_POST['action']);
+    $postData=$_POST;
+    $where="rid='".$_POST['rid']."'";
+    $updateResult = $db->update('requests', $postData,$where);
+    if($updateResult){
+      $response = array("success" => true, "message" => "Work Status Updated");
+    }else{
+      $response = array("success" => false, "message" => "Failed to update workstatus.");
+    }
+    echo json_encode($response);
+
+    break;
+    case 'update-assignee':
+    unset($_POST['action']);
+    $postData=$_POST;
+    $where="rid='".$_POST['rid']."'";
+    $updateResult = $db->update('requests', $postData,$where);
+    if($updateResult){
+      $response = array("success" => true, "message" => "Asignee Updated");
+    }else{
+      $response = array("success" => false, "message" => "Failed to update assignee.");
+    }
+    echo json_encode($response);
+
+    break;
     case 'insert':
     unset($_POST['action']);
     $_POST['rid']=date("Y").generateUniqueID().date("m").date('d');
@@ -197,7 +223,7 @@ if (isset($_POST['action'])) {
 
 
       $is_enduser=$session->getSessionVariable("Role")==2?true:false;
-      $userrole=(int)$session->getSessionVariable("Role")-1;
+      $userrole=(int)$session->getSessionVariable("Role");
       $where='';
       if($is_enduser){
           $where="user_id=".$session->getSessionVariable("Id")." and ";
@@ -209,10 +235,10 @@ if (isset($_POST['action'])) {
           $rejected=getCount($where."is_rejected=1");
       }else{
         if($userrole==0){
-          $pending=getCount($where."is_rejected=0");
+          $pending=getCount($where."level!=3 and is_rejected=0");
         }else{
 
-          $pending=getCount($where."level=".$userrole." and is_rejected=0");
+          $pending=getCount($where."level=0 and is_rejected=0");
           // echo $where."level=".$userrole." and is_rejected=0";
         }
         $auxiliary=getCount($where."level=1 and is_rejected=0");
@@ -248,7 +274,7 @@ if (isset($_POST['action'])) {
       case 'select-all-requests-user':
       $userid=$session->getSessionVariable("Id");
       $role=$session->getSessionVariable("Role");
-      $table = 'requests a inner join projects b on a.project_id=b.id inner join jobs c on a.job_id=c.id inner join users d on a.user_id=d.id';
+      $table = 'requests a inner join projects b on a.project_id=b.id inner join jobs c on a.job_id=c.id inner join users d on a.user_id=d.id inner join departments dept on a.department_id=dept.id';
       switch ($role) {
         case 0:
         //Superuser

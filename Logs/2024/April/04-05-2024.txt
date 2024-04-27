@@ -1,0 +1,6 @@
+12:02 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:31 AM [LoginController] - User carloboado18@gmail.com login successful.
+12:32 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:32 AM [LoginController] - User cboado@teligent.ph login successful.
+12:33 AM [LoginController] - User carloboado18@gmail.com login successful.
+03:06 AM [DatabaseHandler] - Query execution failed: 

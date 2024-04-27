@@ -1,0 +1,1 @@
+09:25 AM [LoginController] - User carloboado18@gmail.com login successful.

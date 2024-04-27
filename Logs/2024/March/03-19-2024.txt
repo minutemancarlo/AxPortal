@@ -13,3 +13,4 @@
 09:08 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
 09:09 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
 09:09 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+04:23 PM [LoginController] - User carloboado18@gmail.com login successful.

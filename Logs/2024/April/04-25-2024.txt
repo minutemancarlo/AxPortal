@@ -1,0 +1,17 @@
+12:14 AM [LoginController] - User carloboado18@gmail.com login successful.
+12:14 AM [DatabaseHandler] - Query execution failed: UPDATE requests SET level = '2', workstatus = '0', assignee = 'Select', reject_description = '', rid = '20249A4DBKNIHD0405' WHERE rid='20249A4DBKNIHD0405'
+12:15 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:15 AM [DatabaseHandler] - Query execution failed: UPDATE requests SET level = '3', workstatus = '0', assignee = 'Select', reject_description = '', rid = '20249A4DBKNIHD0405' WHERE rid='20249A4DBKNIHD0405'
+12:16 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+12:40 AM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+12:41 AM [LoginController] - User s4dev.main@gmail.com login successful.
+12:41 AM [LoginController] - User cboado@teligent.ph login successful.
+01:17 AM [DatabaseHandler] - Query execution failed: UPDATE requests SET  WHERE rid='20249A4DBKNIHD0405'
+11:45 AM [LoginController] - User cboado@teligent.ph login successful.
+11:46 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, department_id, description) VALUES ('4', '5', 'asd', '8', 'asd', '1', 'asd')
+11:46 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, department_id, description) VALUES ('4', '5', 'asd', '8', 'asd', '1', 'asd')
+11:47 AM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, department_id, description) VALUES ('4', '5', 'asd', '8', 'asd', '1', 'asd')
+11:49 AM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+10:16 PM [LoginController] - User carloboado18@gmail.com login successful.
+10:17 PM [LoginController] - User developer.sentinelsystems@gmail.com login successful.
+10:17 PM [LoginController] - User s4dev.main@gmail.com login successful.

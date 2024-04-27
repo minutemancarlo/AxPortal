@@ -32,6 +32,7 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baseurl" content="<?php echo $baseURL; ?>">
     <title>Dashboard | <?php echo $websiteTitle; ?></title>
 
     <?php echo $styles; ?>
@@ -58,62 +59,71 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
                     </div>
                     <?php echo $cards; ?>
                     <!-- REPORT GENERATION -->
-                    <div class="accordion" id="accordionExample" hidden>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Generate Report
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <div class="row">
-          <div class="col-md-6">
+  <div class="accordion" id="accordionExample" <?php if ($roleValue==2){echo "hidden";} ?> >
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Generate Report </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col-md-6">
+              <form class="form-control">
+                <br>
+                <div class="row">
+                  <div class="mb-3 col-3">
+                    <label for="">Report Filter Type</label>
+                    <select class="form-control" id="reportFilter">
+                      <option value="1" selected>Date Range</option>
+                      <option value="2">Month</option>
+                      <option value="3">Year</option>
+                    </select>
+                  </div>
+                  <div class="mb-3 col-3" id="reportYear" hidden>
+                    <label for="">Select Year</label>
+                    <select class="form-control" id="reportYearSelect">
+    <?php
+    // Get the current year
+    $currentYear = date('Y');
 
+    // Loop to generate options for 5 years before and 5 years after the current year
+    for ($i = $currentYear - 5; $i <= $currentYear + 5; $i++) {
+        // Output each year as an option
+        echo '<option value="' . $i . '">' . $i . '</option>';
+    }
+    ?>
+</select>
 
+                  </div>
+                  <div class="mb-3 col-3" id="reportMonth" hidden>
+                    <label for="">Select Month</label>
+                    <select class="form-control" name="" id="reportMonthSelect"> <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                          $monthName = date('F', mktime(0, 0, 0, $month, 1));
+                                          echo "
+											<option value='$month'>$monthName\n</option>";
+                                        }
+                                        ?> </select>
+                  </div>
+                  <div class="mb-3 col-3" id="reportDateRange">
+                    <label for="">Select Date Range</label>
+                    <input type="text" class="form-control datepicker-here" data-range="true"
+                    data-multiple-dates-separator="-" data-language="en" data-position="top left" aria-describedby="daterange"
+                    placeholder="Report Date Range">
+                  </div>
+                  <div class="mb-3 col-3 align-items-bottom">
+                    <br>
+                    <button type="button" id="generatePDFButton" class="btn btn-primary" >Generate</button>
+                  </div>
 
-
-                  <form class="form-control">
-                      <br>
-                      <div class="row">
-                        <div class="mb-3 col-3">
-                          <label for="">Report Filter Type</label>
-                            <select class="form-control" id="reportFilter">
-                              <option value="1">Date Range</option>
-                              <option value="2">Month</option>
-                              <option value="3">Year</option>
-                            </select>
-                        </div>
-                        <div class="mb-3 col-3" id="reportMonth" hidden>
-                          <label for="">Select Month</label>
-                          <select class="form-control" name="">
-                            <?php
-                            for ($month = 1; $month <= 12; $month++) {
-                              $monthName = date('F', mktime(0, 0, 0, $month, 1));
-                              echo "<option value='$month'>$monthName\n</option>";
-                            }
-                             ?>
-                          </select>
-                        </div>
-                        <div class="mb-3 col-3">
-                          <label for="">Select Date Range</label>
-                            <input type="text" class="form-control datepicker-here" data-range="true" data-multiple-dates-separator="-" data-language="en" data-position="top left" aria-describedby="daterange" placeholder="Report Date Range">
-                             <!-- <small id="daterange" class="form-text text-muted">You can select start and end date for date range selection</small> -->
-                        </div>
-                      </div>
-
-
-
-                  </form>
-
-
-
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
                     <!-- REPORT GENERATION -->
                     <br>
@@ -149,70 +159,75 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="dfd text-center">
-                                            <i class="blue large-icon mb-2 fas fa-thumbs-up"></i>
-                                            <h4 class="mb-0">+21,900</h4>
-                                            <p class="text-muted">FACEBOOK PAGE LIKES</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="dfd text-center">
-                                            <i class="orange large-icon mb-2 fas fa-reply-all"></i>
-                                            <h4 class="mb-0">+22,566</h4>
-                                            <p class="text-muted">INSTAGRAM FOLLOWERS</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="dfd text-center">
-                                            <i class="grey large-icon mb-2 fas fa-envelope"></i>
-                                            <h4 class="mb-0">+15,566</h4>
-                                            <p class="text-muted">E-MAIL SUBSCRIBERS</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="dfd text-center">
-                                            <i class="olive large-icon mb-2 fas fa-dollar-sign"></i>
-                                            <h4 class="mb-0">+98,601</h4>
-                                            <p class="text-muted">TOTAL SALES</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container" id="reportprint" hidden>
+      <div class="p-3">
 
+        <h6 class="text-center"> <img src="../assets/img/axportal.png" height="50px;" alt="">
+          <br>
+          <br>
+          <br>
+           <strong id="reportTitle"> </strong></h6>
+           <br>
+           <br>
+           <br>
+        <!-- <div class="row text-center">
+          <div class="col-md-8">
+            <h3 class="float-start">Projects Summary</h3>
+            <table class="table table-striped bordered" id="reportTable_projects" width="100%">
+
+            </table>
+            <div style="page-break-before: always;">
+              <h3 class="float-start">Jobs Summary</h3>
+              <table class="table table-striped bordered" id="reportTable_jobs" width="100%">
+
+              </table>
+            </div>
+
+          </div>
+
+        </div> -->
+
+        <div class="row text-center">
+          <div class="col-md-8">
+            <h3 class="float-start">Projects Summary</h3>
+            <table class="table table-striped bordered" id="reportTable_projects" width="100%">
+            </table>
+          </div>
+        </div>
+        <div style="page-break-before: always;">
+
+        </div>
+        <br><br><br>
+        <div class="row text-center">
+          <div class="col-md-8">
+
+            <h3 class="float-start">Jobs Summary</h3>
+            <table class="table table-striped bordered" id="reportTable_jobs" width="100%">
+
+            </table>
+          </div>
+
+        </div>
+        <div class="float-start">
+          <p>Generated on <?php echo date("m-d-Y"); ?></p>
+        </div>
+        <div class="float-end">
+          <p>Generated by <?php echo $session->getSessionVariable("Name"); ?></p>
+        </div>
+      </div>
+    </div>
 
     <?php echo $scripts; ?>
 
     <script src="../assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
     <script type="text/javascript">
 
       <?php //echo $sweetAlert; ?>
@@ -221,10 +236,120 @@ $cards = $roleHandler->getCards($roleValue,0,0,0,0);
 
     </script>
 
+
     <script type="text/javascript">
     // Initiate time picker
+    var selectedValue;
     mdtimepicker('.timepicker', { format: 'h:mm tt', hourPadding: 'true' });
+    $(document).ready(function(){
+
+      $("#reportFilter").change(function(){
+          selectedValue = $(this).val();
+          switch(selectedValue) {
+              case '1':
+                  $('#reportMonth').prop('hidden',true);
+                  $('#reportDateRange').prop('hidden',false);
+                  $('#reportYear').prop('hidden',true);
+
+                  break;
+              case '2':
+                    $('#reportMonth').prop('hidden',false);
+                    $('#reportDateRange').prop('hidden',true);
+                    $('#reportYear').prop('hidden',true);
+                  break;
+              case '3':
+                  $('#reportMonth').prop('hidden',true);
+                  $('#reportDateRange').prop('hidden',true);
+                  $('#reportYear').prop('hidden',false);
+                  break;
+          }
+      });
+
+// Move the PDF generation code outside of the AJAX success callback
+$("#generatePDFButton").click(function() {
+var where;
+var reportTitle;
+var selectedValue = $("#reportFilter").val()
+var baseURL = $('meta[name="baseurl"]').attr('content');
+  switch(selectedValue) {
+      case '1':
+        where = $('.datepicker-here').val();
+        reportTitle = where;
+
+          break;
+      case '2':
+        where = $('#reportMonthSelect').val();
+        reportTitle = $('#reportMonthSelect option:selected').text() + " 2024";
+        where = '2024-' + where + '-01';
+          break;
+      case '3':
+        where = $('#reportYearSelect').val();
+        reportTitle = where;
+          break;
+  }
+  $('#reportTitle').html("Summary Report for " + reportTitle);
+var table1=false;
+var table2=false;
+var form = document.createElement('form');
+form.method = 'POST'; // Set form method to POST
+form.action = baseURL + 'controllers/dom.php'; // Set form action URL
+
+// Create input fields for each data parameter
+var selectedValueInput = document.createElement('input');
+selectedValueInput.type = 'hidden'; // Hidden input field
+selectedValueInput.name = 'selectedValue'; // Set input name
+selectedValueInput.value = selectedValue; // Set input value
+form.appendChild(selectedValueInput); // Append input field to form
+
+var whereInput = document.createElement('input');
+whereInput.type = 'hidden'; // Hidden input field
+whereInput.name = 'where'; // Set input name
+whereInput.value = where; // Set input value
+form.appendChild(whereInput); // Append input field to form
+
+var actionInput = document.createElement('input');
+actionInput.type = 'hidden'; // Hidden input field
+actionInput.name = 'action'; // Set input name
+actionInput.value = 0; // Set input value
+form.appendChild(actionInput); // Append input field to form
+
+// Append form to document body
+document.body.appendChild(form);
+
+// Submit the form
+form.submit();
+
+// Remove the form from the document body after submission
+document.body.removeChild(form);
+
+
+
+  $.ajax({
+      url: baseURL+'controllers/reportController.php',
+      method: 'POST',
+      data: { selectedValue: selectedValue, where: where, action: 1 },
+      dataType: 'json',
+      success: function(response) {
+
+
+      },
+      error: function(xhr, status, error) {
+          console.error('Error:', error);
+          // Optionally handle error case here
+      }
+  });
+
+
+
+});
+
+
+
+
+});
+
     </script>
+
     <script src="../assets/js/pages/<?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>.js"></script>
 </body>
 

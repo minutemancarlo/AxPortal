@@ -1,0 +1,6 @@
+06:57 AM [LoginController] - User carloboado18@gmail.com login successful.
+11:28 PM [LoginController] - User cboado@teligent.ph login successful.
+11:28 PM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, department_id, jobdescription, description, rid) VALUES ('4', '5', 'Others', '8', '1', 'Others Job', 'test 2', '2024CB7AABYJUA0424')
+11:29 PM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, department_id, jobdescription, description, rid) VALUES ('4', '5', 'Others', '8', '1', 'Others Job', 'test 2', '20245625BB7DQX0424')
+11:30 PM [EmailApi] - Request Status Update sent to cboado@teligent.ph
+11:50 PM [DatabaseHandler] - Query execution failed: INSERT INTO requests (user_id, project_id, projectdescription, job_id, jobdescription, department_id, description, rid) VALUES ('4', 'Select', '', 'Select', '', 'Select', '', '2024C5E448P0ZJ0424')
